@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body style="background: linear-gradient(90deg, #F40076, #342711);">
+<!--<table>-->
+<!--    <tr>-->
+<!--        <th>Id</th>-->
+<!--        <th>Name</th>-->
+<!--        <th>Address</th>-->
+<!--    </tr>-->
+<!--    <tr th:each="university :${list}">-->
+<!--    <td th:text="${university.id}"></td>-->
+<!--    <td th:text="${university.name}"></td>-->
+<!--    <td th:text="${university.address}"></td>-->
+
+<!--    </tr>-->
+<!--</table>-->
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+
+                <div class="card-header bg-dark text-white text-center">
+                    <h4>Student qo'shish</h4>
+                </div>
+
+                <div class="card-body" style="background-color:  rgb(206, 204, 204);"">
+                    <form th:action="@{/university}" th:object="${university}" method="post">
+                        <input type="text" placeholder="Ism" class="form-control my-2" th:name="name">
+                        <input type="text" placeholder="Address" class="form-control my-2" th:name="address">
+                        <input type="submit" value="Save" class="form-control my-2 bg-dark text-light"/>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>name</th>
+                    <th>Address</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="university :${list}">
+                    <td th:text="${university.id}"></td>
+                    <td th:text="${university.name}"></td>
+                    <td th:text="${university.address}"></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

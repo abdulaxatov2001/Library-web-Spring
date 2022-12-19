@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edite Book</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body style="background: linear-gradient(90deg, rgb(128, 11, 11),  #402555);">
+<div class="container-fluid m-4">
+<div class="row mt-5">
+    <div class="col-md-5">
+        <form  method="post" th:action="@{'/book/edite/'+${bookDto.id}}" >
+        <div class="text-center h4">
+                <label class="form-control" style="background: #37d344">Book edite</label>
+            </div>
+
+            <div class="border-secondary p-2" style="background-color:  rgb(206, 204, 204);">
+                <div class="form-group row m-2">
+                    <div class="col-sm-3">
+                        <label class="btn btn-primary form-control">Name</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input name="name" class="form-control" th:field="*{bookDto.name}" placeholder="Category name">
+                    </div>
+                </div>
+
+                <div class="form-group row m-2">
+                    <div class="col-sm-3">
+                        <label class="btn btn-primary form-control">Library:</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <select name="library" class="form-select"  aria-label="Default select example"  >
+                            <option  th:field="*{bookDto.library}" th:each="lib:${libraries}" th:value="${lib.getId()}" th:text="${lib.getName()}" ></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row m-2">
+                    <div class="col-sm-3">
+                        <label class="btn btn-primary form-control">Category:</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <select name="categoryList" aria-label="Default select example" multiple="multiple" class="form-control"  >
+                            <option  th:each="cat:${categories}" th:value="${cat.getId()}" th:text="${cat.getName()}" th:field="*{bookDto.categoryList}"></option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group row m-2">
+                    <div class="col-sm-3">
+                        <label class="btn btn-primary form-control" >Active</label>
+                    </div>
+                    <div th:name="active" class="col-sm-5" >
+                        <input th:field="*{bookDto.active}" class="form-check-input m-2" type="checkbox"/>
+                    </div>
+                    <div class="btn input-group-text">
+                        <button class="btn btn-primary btn-success" type="submit" >Save</button>
+                        <button class="btn border-secondary btn-warning" type="reset" >Reset</button>
+                    </div>
+                </div>
+            </div>
+    </form>
+    </div>
+    <div class="col-md-7">
+        <table class="table table-bordered" style="max-width: 800px">
+            <thead class="table-dark">
+            <tr class="text-center">
+                <th >Name</th>
+                <th>Library</th>
+                <th>Active</th>
+                <th>Code</th>
+                <th>Categories</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+            <tr th:each="book:${books}">
+                <td class="h5" style="background-color:  rgb(206, 204, 204); color: #151414;" th:text="${book.getName()}"></td>
+                <td class="h6" style="background-color:  rgb(206, 204, 204); color: #151414;" th:text="${book.getLibrary().getName()}"></td>
+                <td class="h6" style="background: #9dd983;color: #151414" th:text="${book.isActive()}"></td>
+                <td style="background-color:  rgb(206, 204, 204); color: #151414;" th:text="${book.code}"></td>
+                <td style="background-color:  rgb(206, 204, 204); color: #151414;">
+                    <h6  th:each="cate: ${book.getCategoryList()}" th:text="'* '+${cate.getName()}"></h6>
+
+                </td>
+                <td style="background-color:  rgb(206, 204, 204); color: #151414;" class="text-center">
+                    <a class="btn border-secondary btn-danger" th:href="@{'/book/delete/'+${book.getId()}}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+</div>
+</body>
+</html>

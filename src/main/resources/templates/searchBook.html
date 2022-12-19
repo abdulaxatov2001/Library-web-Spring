@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search book</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body style="background: linear-gradient(90deg,#08086c, rgb(150, 13, 13));">
+<div class="container-fluid text-center" style="max-width: 600px;margin: 80px auto">
+    <div class="row mt-5">
+            <form   th:action="@{/book/search}" method="post"  >
+                <div class="text-center h4">
+                    <label class="form-control bg-success text-light">Search book</label>
+                </div>
+
+                <div class="border-secondary p-2" style="background-color:  rgb(206, 204, 204);">
+                    <div class="form-group row m-2">
+                        <div class="col-sm-3">
+                            <label class="btn btn-primary form-control">Name</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input th:name="name" class="form-control"  placeholder="Any word that contains book" required minlength="1">
+                        </div>
+                    </div>
+
+<!--                    <div class="form-group row m-2">-->
+<!--                        <div class="col-sm-3">-->
+<!--                            <label class="btn btn-primary form-control">Library:</label>-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <select th:name="library" class="form-select"  aria-label="Default select example"  >-->
+<!--                                <option>Choose library</option>-->
+<!--                                <option  th:each="lib:${libraries}" th:value="${lib.getId()}" th:text="${lib.getName()}"  ></option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row m-2">-->
+<!--                        <div class="col-sm-3">-->
+<!--                            <label class="btn btn-primary form-control">Category:</label>-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <select th:name="categoryList" aria-label="Default select example" multiple="multiple" class="form-control" >-->
+<!--                                <option  th:each="cat:${categories}" th:value="${cat.getId()}" th:text="${cat.getName()}"  ></option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+                    <div class="form-group row">
+                        <div class="btn input-group-text">
+                            <button class="btn btn-success btn-secondary" type="submit">Search</button>
+                            <button class="btn btn-warning border-secondary" type="reset">Reset</button>
+                        </div>
+                    </div>
+                    </div>
+            </form>
+
+        </div>
+</div>
+</body>
+</html>
